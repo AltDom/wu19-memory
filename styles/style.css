@@ -1,0 +1,65 @@
+body {
+  background-color: #75acc0;
+}
+
+/* .wrapper {
+  display: flex;
+  flex-direction: column;
+} */
+
+.heading {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #66202a;
+  font-size: 40px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.newGame {
+  padding-top: 15px;
+}
+
+.menu {
+  display: flex;
+}
+
+li {
+  padding: 0 10px;
+  list-style: none;
+}
+
+.grid {
+  margin: 0;
+}
+
+.game {
+  display: flex;
+  justify-content: space-around;
+  font-size: 24px;
+}
+
+.counttimer {
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+
+.git {
+  padding: 0 5px;
+  color: black;
+  width: 30px;
+}

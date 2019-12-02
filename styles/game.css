@@ -1,0 +1,83 @@
+.grid {
+    padding: 10px;
+    background-color: #66202a;
+    width: 430px;
+    height: 430px;
+    grid-gap: 10px ;
+    display: grid;
+    grid-template: 100px 100px 100px 100px / 100px 100px 100px 100px;
+}
+
+.grid-item {
+    background-color: black;
+}
+
+img {
+    padding: 5px;
+    width: 90px;
+}
+
+.grid-item.open {
+	transform: rotateY(0);
+	background: #66202a;
+	cursor: default;
+	animation: flipY;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+}
+
+.grid .grid-item.match {
+	cursor: default;
+	background: #e1b878;
+	font-size: 33px;
+	animation-name: rubberBand;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+}
+
+.grid .grid-item.unmatched {
+	animation-name: pulse;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+	background: #66202a;
+}
+
+.grid .grid-item.disabled {
+	pointer-events: none;
+	opacity: 0.9;
+}
+
+.counttimer {
+  padding-top: 15px;
+}
+
+.highScoreLines {
+  font-size: 20px;
+}
+
+/* animations */
+@keyframes flipY {
+	from {
+		transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+		animation-timing-function: ease-in;
+		opacity: 0;
+	}
+
+	40% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+		animation-timing-function: ease-in;
+	}
+
+	60% {
+		transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+		opacity: 1;
+	}
+
+	80% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+	}
+
+	to {
+		transform: perspective(400px);
+	}
+}
