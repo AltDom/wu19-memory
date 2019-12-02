@@ -8,12 +8,18 @@ body {
 } */
 
 .heading {
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   color: #66202a;
   font-size: 40px;
 }
+
+/* .highScoreHeading {
+  padding-right: 50px;
+} */
 
 nav {
   display: flex;
@@ -47,15 +53,15 @@ li {
   padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
+  text-align: center;
 }
 
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh;
 }
 
 .git {
