@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/game.css">
+    <link rel="icon" type="image/png" href="/icons/n64.png">
+    <title>Memory Game</title>
+</head>
+<body>
+    <!-- <div class = "wrapper"> -->
+        <nav>
+            <div class="newGame" onclick=restart()>New Game / Replay</div>
+            <ul class = "menu">
+                <li>Difficulty</li>
+            </ul>
+        </nav>
+        <h1 class = "heading">Memory Game</h1>
+        <section>
+          <div class = "game">
+            <div class = "grid"></div>
+            <div>High Scores
+              <div class = "high-scores"></div>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="counttimer">
+          Guesses: <span class="count"> 0</span><br>
+          Timer: <span class="timer"></span>
+        </section>
+
+        <footer>
+            <h5>Developed by AltDom 2019.</h5>
+            <a href="https://github.com/AltDom"><img class="git" src="/icons/github.svg" alt=""></a>
+        </footer>
+    <!-- </div> -->
+
+    <script src="/scripts/game.js"></script>
+</body>
+</html>
