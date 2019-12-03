@@ -120,17 +120,17 @@ const createTile = (title, icon) => {
 
 // Creates a high score line.
 const createHighScore = (number, guesses, name, minute, second, milli) => {
-  return `<div class="highScoreLines">${number}. ${name}   ${guesses} guesses  ${minute} mins ${second}.${milli} secs.</div>`;
+  return `<div class="highScoreLines">${number}. ${name} ${minute} mins ${second}.${milli} secs. ${guesses} guesses  </div>`;
 };
 
 // Creates a high score line for when its one minute.
 const createOneMinuteHighScore = (number, guesses, name, minute, second, milli) => {
-  return `<div class="highScoreLines">${number}. ${name}   ${guesses} guesses  ${minute} min ${second}.${milli} secs.</div>`;
+  return `<div class="highScoreLines">${number}. ${name}  ${minute} min ${second}.${milli} secs. ${guesses} guesses  </div>`;
 };
 
 // Creates an alternate high score line without minutes (if its a fast game).
 const createMinutelessHighScore = (number, guesses, name, second, milli) => {
-  return `<div class="highScoreLines">${number}. ${name}   ${guesses} guesses  ${second}.${milli} secs.</div>`;
+  return `<div class="highScoreLines">${number}. ${name}  ${second}.${milli} secs. ${guesses} guesses  </div>`;
 };
 
 // Refresh/reshuffle function (Note: we can pass in a subset of gridItems).
