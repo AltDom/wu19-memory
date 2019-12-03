@@ -2,10 +2,10 @@ body {
   background-color: #75acc0;
 }
 
-/* .wrapper {
+.wrapper {
   display: flex;
-  flex-direction: column;
-} */
+  justify-content: space-around;
+}
 
 .heading {
   margin-top: 10px;
@@ -17,13 +17,8 @@ body {
   font-size: 40px;
 }
 
-/* .highScoreHeading {
-  padding-right: 50px;
-} */
-
-nav {
-  display: flex;
-  justify-content: space-between;
+.highScoreHeading {
+  width: 200px;
 }
 
 .newGame {
@@ -68,4 +63,8 @@ footer {
   padding: 0 5px;
   color: black;
   width: 30px;
+}
+
+section {
+  display: block;
 }
