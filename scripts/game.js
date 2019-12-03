@@ -17,6 +17,7 @@ const gridItems = [
     { name: 'snes', image: '/icons/snes.svg' },
     { name: 'joystick', image: '/icons/joystick.svg' }
 ];
+const alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Ö','Ä','Å','Ü'];
 
 // Declaring variable for the number of top score lines (can be changed to whatever you like).
 const numberOfTopScores = 10;
@@ -33,6 +34,64 @@ let counter = document.querySelector(".count");
 let openedTiles = [];
 // An array of all matched tiles.
 let matchedTile = document.getElementsByClassName("match");
+let btn1 = document.querySelector('.btn1');
+let btn2 = document.querySelector('.btn2');
+let btn3 = document.querySelector('.btn3');
+let letter1 = document.querySelector('.letter1');
+let letter2 = document.querySelector('.letter2');
+let letter3 = document.querySelector('.letter3');
+
+const nextLetter1 = () => {
+  let currentLetter = letter1.innerHTML;
+  for (let i=0 ; i<30 ; i++) {
+    if (alpha[i] === currentLetter && i<29) {
+      letter1.innerHTML = alpha[i+1];
+      break;
+    } else if (alpha[i] === null) {
+      letter1.innerHTML = alpha[0];
+      break;
+    } else if (alpha[i] === 'Ü'){
+      letter1.innerHTML = alpha[0];
+      break;
+    }
+  }
+};
+
+const nextLetter2 = () => {
+  let currentLetter = letter2.innerHTML;
+  for (let i=0 ; i<30 ; i++) {
+    if (alpha[i] === currentLetter && i<29) {
+      letter2.innerHTML = alpha[i+1];
+      break;
+    } else if (alpha[i] === null) {
+      letter2.innerHTML = alpha[0];
+      break;
+    } else if (alpha[i] === 'Ü'){
+      letter2.innerHTML = alpha[0];
+      break;
+    }
+  }
+};
+
+const nextLetter3 = () => {
+  let currentLetter = letter3.innerHTML;
+  for (let i=0 ; i<30 ; i++) {
+    if (alpha[i] === currentLetter && i<29) {
+      letter3.innerHTML = alpha[i+1];
+      break;
+    } else if (alpha[i] === null) {
+      letter3.innerHTML = alpha[0];
+      break;
+    } else if (alpha[i] === 'Ü'){
+      letter3.innerHTML = alpha[0];
+      break;
+    }
+  }
+};
+
+btn1.addEventListener("click", nextLetter1);
+btn2.addEventListener("click", nextLetter2);
+btn3.addEventListener("click", nextLetter3);
 
 // A function which shuffles unmatched grid items.
 function shuffleGridItems(array) {
@@ -134,6 +193,17 @@ function matched() {
     clearInterval(interval);
     guesses = parseInt(counter.innerHTML);
 
+
+    let topScores = JSON.parse(localStorage.getItem('topScores'));
+    let fastestMins = JSON.parse(localStorage.getItem('fastestMins'));
+    let fastestSecs = JSON.parse(localStorage.getItem('fastestSecs'));
+    let fastestMillis = JSON.parse(localStorage.getItem('fastestMillis'));
+    if (topScores === null) {
+      topScores = [];
+      fastestMins = [];
+      fastestSecs = [];
+      fastestMillis = [];
+    }
     // getArray.forEach(number => {
     //   highScores.push(JSON.parse(localStorage.getItem(number)));
     //   fastestMins.push(JSON.parse(localStorage.getItem(number)));
@@ -282,8 +352,11 @@ function matched() {
     // // console.log(highScores);
     // if(highScores!==null) {
     //   highScores.push(scores);
-    //   localStorage.clear();
-    //   localStorage.setItem('highScores', JSON.stringify(highScores));
+    localStorage.clear();
+    localStorage.setItem('topScores', JSON.stringify(topScores));
+    localStorage.setItem('fastestMins', JSON.stringify(fastestMins));
+    localStorage.setItem('fastestSecs', JSON.stringify(fastestSecs));
+    localStorage.setItem('fastestMillis', JSON.stringify(fastestMillis));
     // } else {
     //   localStorage.clear();
     //   localStorage.setItem('highScores', JSON.stringify(scores));

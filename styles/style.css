@@ -8,8 +8,8 @@ body {
 }
 
 .heading {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -17,16 +17,28 @@ body {
   font-size: 40px;
 }
 
+.btn1, .btn2, .btn3 {
+  padding: 20px;
+  border: 2px solid #66202a;
+  border-radius: 50%;
+  background-color: #e1b878;
+  padding: 10px;
+  margin: 2px;
+  outline: none;
+}
+
 .scoresAndButton {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  outline: none;
 }
 
 .highScoreHeading {
-  width: 200px;
+  width: 300px;
   text-align: center;
   font-size: 24px;
+  font-weight: bold;
   color: #66202a;
 }
 
@@ -81,4 +93,26 @@ footer {
 
 section {
   display: block;
+}
+
+.name {
+  color: black;
+  display: flex;
+  padding: 2px;
+  align-items: center;
+}
+
+.letters {
+  color: #66202a;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.letters div {
+  padding: 2px;
+}
+
+.buttons {
+
 }
