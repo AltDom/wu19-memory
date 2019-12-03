@@ -119,18 +119,18 @@ const createTile = (title, icon) => {
 };
 
 // Creates a high score line.
-const createHighScore = (number, guesses, minute, second, milli) => {
-  return `<div class="highScoreLines">${number}. ${guesses} guesses  ${minute} mins ${second}.${milli} secs.</div>`;
+const createHighScore = (number, guesses, name, minute, second, milli) => {
+  return `<div class="highScoreLines">${number}. ${name}   ${guesses} guesses  ${minute} mins ${second}.${milli} secs.</div>`;
 };
 
 // Creates a high score line for when its one minute.
-const createOneMinuteHighScore = (number, guesses, minute, second, milli) => {
-  return `<div class="highScoreLines">${number}. ${guesses} guesses  ${minute} min ${second}.${milli} secs.</div>`;
+const createOneMinuteHighScore = (number, guesses, name, minute, second, milli) => {
+  return `<div class="highScoreLines">${number}. ${name}   ${guesses} guesses  ${minute} min ${second}.${milli} secs.</div>`;
 };
 
 // Creates an alternate high score line without minutes (if its a fast game).
-const createMinutelessHighScore = (number, guesses, second, milli) => {
-  return `<div class="highScoreLines">${number}. ${guesses} guesses  ${second}.${milli} secs.</div>`;
+const createMinutelessHighScore = (number, guesses, name, second, milli) => {
+  return `<div class="highScoreLines">${number}. ${name}   ${guesses} guesses  ${second}.${milli} secs.</div>`;
 };
 
 // Refresh/reshuffle function (Note: we can pass in a subset of gridItems).
@@ -184,6 +184,17 @@ function tileFlip() {
   }
 };
 
+function grabPlayerName() {
+  let letter1 = document.querySelector('.letter1');
+  let letter2 = document.querySelector('.letter2');
+  let letter3 = document.querySelector('.letter3');
+  let playerNameLetter1 = letter1.innerHTML;
+  let playerNameLetter2 = letter2.innerHTML;
+  let playerNameLetter3 = letter3.innerHTML;
+  let playerName = playerNameLetter1+playerNameLetter2+playerNameLetter3;
+  return playerName;
+}
+
 // Runs when tiles match.
 function matched() {
   openedTiles[0].classList.add("match", "disabled");
@@ -192,14 +203,16 @@ function matched() {
     milli--;
     clearInterval(interval);
     guesses = parseInt(counter.innerHTML);
+    playerName = grabPlayerName();
 
-
+    let playerNames = JSON.parse(localStorage.getItem('playerNames'));
     let topScores = JSON.parse(localStorage.getItem('topScores'));
     let fastestMins = JSON.parse(localStorage.getItem('fastestMins'));
     let fastestSecs = JSON.parse(localStorage.getItem('fastestSecs'));
     let fastestMillis = JSON.parse(localStorage.getItem('fastestMillis'));
     if (topScores === null) {
       topScores = [];
+      playerNames = [];
       fastestMins = [];
       fastestSecs = [];
       fastestMillis = [];
@@ -229,6 +242,8 @@ function matched() {
           if (i === numberOfTopScores-1) {
             topScores.pop();
             topScores.push(guesses);
+            playerNames.pop();
+            playerNames.push(playerName);
             fastestMins.pop();
             fastestMins.push(minute);
             fastestSecs.pop();
@@ -238,12 +253,14 @@ function matched() {
             break;
           } else if (i === 0) {
             topScores.unshift(guesses);
+            playerNames.unshift(playerName);
             fastestMins.unshift(minute);
             fastestSecs.unshift(second);
             fastestMillis.unshift(milli);
             break;
           } else {
             topScores.splice(i,0,guesses);
+            playerNames.splice(i,0,playerName);
             fastestMins.splice(i,0,minute);
             fastestSecs.splice(i,0,second);
             fastestMillis.splice(i,0,milli);
@@ -254,6 +271,8 @@ function matched() {
             if (i === numberOfTopScores-1) {
               topScores.pop();
               topScores.push(guesses);
+              playerNames.pop();
+              playerNames.push(playerName);
               fastestMins.pop();
               fastestMins.push(minute);
               fastestSecs.pop();
@@ -263,6 +282,7 @@ function matched() {
               break;
             } else if (i === 0) {
               topScores.unshift(guesses);
+              playerNames.unshift(playerName);
               fastestMins.unshift(minute);
               fastestSecs.unshift(second);
               fastestMillis.unshift(milli);
@@ -279,6 +299,8 @@ function matched() {
               if (i === numberOfTopScores-1) {
                 topScores.pop();
                 topScores.push(guesses);
+                playerNames.pop();
+                playerNames.push(playerName);
                 fastestMins.pop();
                 fastestMins.push(minute);
                 fastestSecs.pop();
@@ -288,6 +310,7 @@ function matched() {
                 break;
               } else if (i === 0) {
                 topScores.unshift(guesses);
+                playerNames.unshift(playerName);
                 fastestMins.unshift(minute);
                 fastestSecs.unshift(second);
                 fastestMillis.unshift(milli);
@@ -304,6 +327,8 @@ function matched() {
                 if (i === numberOfTopScores-1) {
                   topScores.pop();
                   topScores.push(guesses);
+                  playerNames.pop();
+                  playerNames.push(playerName);
                   fastestMins.pop();
                   fastestMins.push(minute);
                   fastestSecs.pop();
@@ -313,6 +338,7 @@ function matched() {
                   break;
                 } else if (i === 0) {
                   topScores.unshift(guesses);
+                  playerNames.unshift(playerName);
                   fastestMins.unshift(minute);
                   fastestSecs.unshift(second);
                   fastestMillis.unshift(milli);
@@ -330,6 +356,7 @@ function matched() {
         }
         if (i===topScores.length-1 && topScores.length<numberOfTopScores) {
           topScores.push(guesses);
+          playerNames.push(playerName);
           fastestMins.push(minute);
           fastestSecs.push(second);
           fastestMillis.push(milli);
@@ -338,12 +365,14 @@ function matched() {
       }
       if (topScores.length>numberOfTopScores) {
         topScores.pop();
+        playerNames.pop();
         fastestMins.pop();
         fastestSecs.pop();
         fastestMillis.pop();
       }
     } else {
       topScores.push(guesses);
+      playerNames.push(playerName);
       fastestMins.push(minute);
       fastestSecs.push(second);
       fastestMillis.push(milli);
@@ -353,6 +382,7 @@ function matched() {
     // if(highScores!==null) {
     //   highScores.push(scores);
     localStorage.clear();
+    localStorage.setItem('playerNames', JSON.stringify(playerNames));
     localStorage.setItem('topScores', JSON.stringify(topScores));
     localStorage.setItem('fastestMins', JSON.stringify(fastestMins));
     localStorage.setItem('fastestSecs', JSON.stringify(fastestSecs));
@@ -370,11 +400,11 @@ function matched() {
     for (let i=0;i<scoreListSize;i++) {
       let number = (i+1);
       if (fastestMins[i] === 0) {
-        highScore = createMinutelessHighScore(number,topScores[i],fastestSecs[i],fastestMillis[i]);
+        highScore = createMinutelessHighScore(number,topScores[i],playerNames[i],fastestSecs[i],fastestMillis[i]);
       } else if (fastestMins[i] === 1) {
-        highScore = createOneMinuteHighScore(number,topScores[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
+        highScore = createOneMinuteHighScore(number,topScores[i],playerNames[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
       } else {
-        highScore = createHighScore(number,topScores[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
+        highScore = createHighScore(number,topScores[i],playerNames[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
       }
       highScoresList.appendChild(stringToHTML(highScore));
     }

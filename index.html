@@ -1,47 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/game.css">
-    <link rel="icon" type="image/png" href="/icons/n64.png">
-    <title>Memory Game</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/styles/game.css">
+  <link rel="icon" type="image/png" href="/icons/n64.png">
+  <title>Everything Under Control</title>
 </head>
 <body>
-    <!-- <div class = "wrapper"> -->
-        <h1 class = "heading">Memory Game</h1>
-      <div class= "wrapper">
-        <section>
-          <div class = "game">
-            <div class = "grid"></div>
-          </div>
-          <div class="counttimer">
-            Guesses: <span class="count"> 0</span><br>
-            Timer: <span class="timer"></span>
-          </div>
-        </section>
-        <section class = "scoresAndButton">
-          <div>
-            <div class="buttons"><button class="btn1"></button><button class="btn2"></button><button class="btn3"></button></div>
-            <div class="name">Name: <div class="letters"><div class='letter1'></div><div class='letter2'></div><div class='letter3'></div></div></div>
-            <div class="highScoreHeading">High Scores
-              <div class = "high-scores"></div>
-            </div>
-          </div>
-          <button class="newGame" onclick=restart()>New Game / Replay</button>
-        </section>
+  <h1 class = "heading">Everything Under Control</h1>
+  <div class= "wrapper">
+    <section>
+      <div class = "game">
+        <div class = "grid"></div>
       </div>
-
-
-
-        <footer>
-            <h5>Developed by AltDom 2019.</h5>
-            <a href="https://github.com/AltDom"><img class="git" src="/icons/github.svg" alt=""></a>
-        </footer>
-    <!-- </div> -->
-
-    <script src="/scripts/game.js"></script>
+      <div class="counttimer">
+        Guesses: <span class="count"> 0</span><br>
+        Timer: <span class="timer"></span>
+      </div>
+    </section>
+    <section class = "scoresAndButton">
+      <div>
+        <div class="buttons"><button class="btn1"></button><button class="btn2"></button><button class="btn3"></button></div>
+        <div class="name">Name: <div class="letters"><div class='letter1'></div><div class='letter2'></div><div class='letter3'></div></div></div>
+        <div class="highScoreHeading">High Scores
+          <div class = "high-scores"></div>
+        </div>
+      </div>
+      <button class="newGame" onclick=restart()>New Game / Replay</button>
+    </section>
+  </div>
+  <footer>
+      <h5>Developed by AltDom 2019.</h5>
+      <a href="https://github.com/AltDom"><img class="git" src="/icons/github.svg" alt=""></a>
+  </footer>
+  <script src="/scripts/game.js"></script>
 </body>
 </html>
