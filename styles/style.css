@@ -17,12 +17,26 @@ body {
   font-size: 40px;
 }
 
+.scoresAndButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .highScoreHeading {
   width: 200px;
+  text-align: center;
+  font-size: 24px;
+  color: #66202a;
 }
 
 .newGame {
-  padding-top: 15px;
+  padding: 10px 0px;
+  background-color: #e1b878;
+  color: #66202a;
+  font-size: 20px;
+  border: 3px solid #66202a;
+  border-radius: 5px;
 }
 
 .menu {

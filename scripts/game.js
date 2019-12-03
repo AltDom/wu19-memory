@@ -133,6 +133,25 @@ function matched() {
     milli--;
     clearInterval(interval);
     guesses = parseInt(counter.innerHTML);
+
+    // getArray.forEach(number => {
+    //   highScores.push(JSON.parse(localStorage.getItem(number)));
+    //   fastestMins.push(JSON.parse(localStorage.getItem(number)));
+    //   fastestSecs.push(JSON.parse(localStorage.getItem(number)));
+    //   fastestMillis.push(JSON.parse(localStorage.getItem(number)));
+    // });
+     // let highScores = JSON.parse(localStorage.getItem('highScores'));
+    // // console.log(highScores);
+    // if(highScores!==null) {
+    //   highScores.push(scores);
+    //   localStorage.clear();
+    //   localStorage.setItem('highScores', JSON.stringify(highScores));
+    // } else {
+    //   localStorage.clear();
+    //   localStorage.setItem('highScores', JSON.stringify(scores));
+    // }
+    // scores = [];
+
     // This if statement checks the current run and sorts the high scores list.
     if (topScores.length >= 1) {
       for (let i=0;i<topScores.length;i++) {
