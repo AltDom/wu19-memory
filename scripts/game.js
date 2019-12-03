@@ -110,27 +110,42 @@ function shuffleGridItems(array) {
 };
 
 function unpackScores() {
-  playerNames = JSON.parse(localStorage.getItem('playerNames'));
-  topScores = JSON.parse(localStorage.getItem('topScores'));
-  fastestMins = JSON.parse(localStorage.getItem('fastestMins'));
-  fastestSecs = JSON.parse(localStorage.getItem('fastestSecs'));
-  fastestMillis = JSON.parse(localStorage.getItem('fastestMillis'));
-  if (topScores === null) {
-    topScores = [];
-    playerNames = [];
-    fastestMins = [];
-    fastestSecs = [];
-    fastestMillis = [];
+  playerNamesTime = JSON.parse(localStorage.getItem('playerNamesTime'));
+  topScoresTime = JSON.parse(localStorage.getItem('topScoresTime'));
+  fastestMinsTime = JSON.parse(localStorage.getItem('fastestMinsTime'));
+  fastestSecsTime = JSON.parse(localStorage.getItem('fastestSecsTime'));
+  fastestMillisTime = JSON.parse(localStorage.getItem('fastestMillisTime'));
+  playerNamesGuess = JSON.parse(localStorage.getItem('playerNamesGuess'));
+  topScoresGuess = JSON.parse(localStorage.getItem('topScoresGuess'));
+  fastestMinsGuess = JSON.parse(localStorage.getItem('fastestMinsGuess'));
+  fastestSecsGuess = JSON.parse(localStorage.getItem('fastestSecsGuess'));
+  fastestMillisGuess = JSON.parse(localStorage.getItem('fastestMillisGuess'));
+  if (topScoresTime === null) {
+    topScoresTime = [];
+    playerNamesTime = [];
+    fastestMinsTime = [];
+    fastestSecsTime = [];
+    fastestMillisTime = [];
+    topScoresGuess = [];
+    playerNamesGuess = [];
+    fastestMinsGuess = [];
+    fastestSecsGuess = [];
+    fastestMillisGuess = [];
   }
 }
 
 function storeScores() {
   localStorage.clear();
-  localStorage.setItem('playerNames', JSON.stringify(playerNames));
-  localStorage.setItem('topScores', JSON.stringify(topScores));
-  localStorage.setItem('fastestMins', JSON.stringify(fastestMins));
-  localStorage.setItem('fastestSecs', JSON.stringify(fastestSecs));
-  localStorage.setItem('fastestMillis', JSON.stringify(fastestMillis));
+  localStorage.setItem('playerNamesTime', JSON.stringify(playerNamesTime));
+  localStorage.setItem('topScoresTime', JSON.stringify(topScoresTime));
+  localStorage.setItem('fastestMinsTime', JSON.stringify(fastestMinsTime));
+  localStorage.setItem('fastestSecsTime', JSON.stringify(fastestSecsTime));
+  localStorage.setItem('fastestMillisTime', JSON.stringify(fastestMillisTime));
+  localStorage.setItem('playerNamesGuess', JSON.stringify(playerNamesGuess));
+  localStorage.setItem('topScoresGuess', JSON.stringify(topScoresGuess));
+  localStorage.setItem('fastestMinsGuess', JSON.stringify(fastestMinsGuess));
+  localStorage.setItem('fastestSecsGuess', JSON.stringify(fastestSecsGuess));
+  localStorage.setItem('fastestMillisGuess', JSON.stringify(fastestMillisGuess));
 }
 
 // Creates an HTML element from string.
@@ -147,32 +162,56 @@ const createTile = (title, icon) => {
 
 // Creates a high score line.
 const createHighScoreTime = (number, guesses, name, minute, second, milli) => {
-  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${minute} mins ${second}.${milli} secs. ${guesses} guesses</div></div>`;
+  if(milli >= 0 && milli < 10) {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${minute} mins ${second}.0${milli} secs</div><div class="smallLetters">${guesses} guesses</div></div>`;
+  } else {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${minute} mins ${second}.${milli} secs</div><div class="smallLetters">${guesses} guesses</div></div>`;
+  }
 };
 
 // Creates a high score line for when its one minute.
 const createOneMinuteHighScoreTime = (number, guesses, name, minute, second, milli) => {
-  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${minute} min ${second}.${milli} secs. ${guesses} guesses</div></div>`;
+  if(milli >= 0 && milli < 10) {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${minute} min ${second}.0${milli} secs</div><div class="smallLetters">${guesses} guesses</div></div>`;
+  } else {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${minute} min ${second}.${milli} secs</div><div class="smallLetters">${guesses} guesses</div></div>`;
+  }
 };
 
 // Creates an alternate high score line without minutes (if its a fast game).
 const createMinutelessHighScoreTime = (number, guesses, name, second, milli) => {
-  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${second}.${milli} secs. ${guesses} guesses</div></div>`;
+  if(milli >= 0 && milli < 10) {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${second}.0${milli} secs</div><div class="smallLetters">${guesses} guesses</div></div>`;
+  } else {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${second}.${milli} secs</div><div class="smallLetters">${guesses} guesses</div></div>`;
+  }
 };
 
 // Creates a high score line.
 const createHighScoreGuess = (number, guesses, name, minute, second, milli) => {
-  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses. ${minute} mins ${second}.${milli} secs</div></div>`;
+  if(milli >= 0 && milli < 10) {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses</div><div class="smallLetters">${minute} mins ${second}.0${milli} secs</div></div>`;
+  } else {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses</div><div class="smallLetters">${minute} mins ${second}.${milli} secs</div></div>`;
+  }
 };
 
 // Creates a high score line for when its one minute.
 const createOneMinuteHighScoreGuess = (number, guesses, name, minute, second, milli) => {
-  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses. ${minute} min ${second}.${milli} secs</div></div>`;
+  if(milli >= 0 && milli < 10) {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses</div><div class="smallLetters">${minute} min ${second}.0${milli} secs</div></div>`;
+  } else {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses</div><div class="smallLetters">${minute} min ${second}.${milli} secs</div></div>`;
+  }
 };
 
 // Creates an alternate high score line without minutes (if its a fast game).
 const createMinutelessHighScoreGuess = (number, guesses, name, second, milli) => {
-  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses. ${second}.${milli} secs</div></div>`;
+  if(milli >= 0 && milli < 10) {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses</div><div class="smallLetters">${second}.0${milli} secs</div></div>`;
+  } else {
+    return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses</div><div class="smallLetters">${second}.${milli} secs</div></div>`;
+  }
 };
 
 // Refresh/reshuffle function (Note: we can pass in a subset of gridItems).
@@ -292,6 +331,7 @@ function sortScoresByTime(topScores,playerNames,fastestMins,fastestSecs,fastestM
             break;
           } else {
             topScores.splice(i,0,guesses);
+            playerNames.splice(i,0,playerName);
             fastestMins.splice(i,0,minute);
             fastestSecs.splice(i,0,second);
             fastestMillis.splice(i,0,milli);
@@ -320,6 +360,7 @@ function sortScoresByTime(topScores,playerNames,fastestMins,fastestSecs,fastestM
               break;
             } else {
               topScores.splice(i,0,guesses);
+              playerNames.splice(i,0,playerName);
               fastestMins.splice(i,0,minute);
               fastestSecs.splice(i,0,second);
               fastestMillis.splice(i,0,milli);
@@ -348,6 +389,7 @@ function sortScoresByTime(topScores,playerNames,fastestMins,fastestSecs,fastestM
                 break;
               } else {
                 topScores.splice(i,0,guesses);
+                playerNames.splice(i,0,playerName);
                 fastestMins.splice(i,0,minute);
                 fastestSecs.splice(i,0,second);
                 fastestMillis.splice(i,0,milli);
@@ -438,6 +480,7 @@ function sortScoresByGuess(topScores,playerNames,fastestMins,fastestSecs,fastest
             break;
           } else {
             topScores.splice(i,0,guesses);
+            playerNames.splice(i,0,playerName);
             fastestMins.splice(i,0,minute);
             fastestSecs.splice(i,0,second);
             fastestMillis.splice(i,0,milli);
@@ -466,6 +509,7 @@ function sortScoresByGuess(topScores,playerNames,fastestMins,fastestSecs,fastest
               break;
             } else {
               topScores.splice(i,0,guesses);
+              playerNames.splice(i,0,playerName);
               fastestMins.splice(i,0,minute);
               fastestSecs.splice(i,0,second);
               fastestMillis.splice(i,0,milli);
@@ -494,6 +538,7 @@ function sortScoresByGuess(topScores,playerNames,fastestMins,fastestSecs,fastest
                 break;
               } else {
                 topScores.splice(i,0,guesses);
+                playerNames.splice(i,0,playerName);
                 fastestMins.splice(i,0,minute);
                 fastestSecs.splice(i,0,second);
                 fastestMillis.splice(i,0,milli);
@@ -533,6 +578,8 @@ function printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMi
   let scoreListSize = topScores.length;
   const highScoresList = document.querySelector(".high-scores");
   highScoresList.innerHTML = "";
+  const highScoresHeading = document.querySelector(".highScoreHeading");
+  highScoresHeading.innerHTML = `<div>High Scores</div>`;
   for (let i=0;i<scoreListSize;i++) {
     let number = (i+1);
     if (fastestMins[i] === 0) {
@@ -550,6 +597,8 @@ function printScoresGuess(topScores,playerNames,fastestMins,fastestSecs,fastestM
   let scoreListSize = topScores.length;
   const highScoresList = document.querySelector(".high-scores");
   highScoresList.innerHTML = "";
+  const highScoresHeading = document.querySelector(".highScoreHeading");
+  highScoresHeading.innerHTML = `<div>High Scores</div>`;
   for (let i=0;i<scoreListSize;i++) {
     let number = (i+1);
     if (fastestMins[i] === 0) {
@@ -576,34 +625,29 @@ function matched() {
     // unpack scores from local storage
     unpackScores();
 
-    // sort scores
-    if (sortBy === 'time') {
-      highScoresArray = sortScoresByTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
-    } else {
-      highScoresArray = sortScoresByGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
-    }
+    // sort scores by time and guesses
+    highScoresArrayTime = sortScoresByTime(topScoresTime,playerNamesTime,fastestMinsTime,fastestSecsTime,fastestMillisTime);
+    highScoresArrayGuess = sortScoresByGuess(topScoresGuess,playerNamesGuess,fastestMinsGuess,fastestSecsGuess,fastestMillisGuess);
 
-    // unpack the scores after being sorted
-    topScores = highScoresArray[0];
-    playerNames = highScoresArray[1];
-    fastestMins = highScoresArray[2];
-    fastestSecs = highScoresArray[3];
-    fastestMillis = highScoresArray[4];
+    // unpack scores after being sorted
+    topScoresTime = highScoresArrayTime[0];
+    playerNamesTime = highScoresArrayTime[1];
+    fastestMinsTime = highScoresArrayTime[2];
+    fastestSecsTime = highScoresArrayTime[3];
+    fastestMillisTime = highScoresArrayTime[4];
+    topScoresGuess = highScoresArrayGuess[0];
+    playerNamesGuess = highScoresArrayGuess[1];
+    fastestMinsGuess = highScoresArrayGuess[2];
+    fastestSecsGuess = highScoresArrayGuess[3];
+    fastestMillisGuess = highScoresArrayGuess[4];
 
     // put scores into local storage
     storeScores();
-    localStorage.clear();
-    localStorage.setItem('playerNames', JSON.stringify(playerNames));
-    localStorage.setItem('topScores', JSON.stringify(topScores));
-    localStorage.setItem('fastestMins', JSON.stringify(fastestMins));
-    localStorage.setItem('fastestSecs', JSON.stringify(fastestSecs));
-    localStorage.setItem('fastestMillis', JSON.stringify(fastestMillis));
-
     // print scores.
     if (sortBy === 'time') {
-      printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
+      printScoresTime(topScoresTime,playerNamesTime,fastestMinsTime,fastestSecsTime,fastestMillisTime);
     } else if (sortBy === 'guess') {
-      printScoresGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
+      printScoresGuess(topScoresGuess,playerNamesGuess,fastestMinsGuess,fastestSecsGuess,fastestMillisGuess);
     }
   }
   openedTiles[0].classList.remove("show", "open");
@@ -702,11 +746,19 @@ function toggleSort() {
   unpackScores();
   if (sortBy === 'time') {
     sortBy = 'guess';
-    printScoresGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
+    printScoresGuess(topScoresGuess,playerNamesGuess,fastestMinsGuess,fastestSecsGuess,fastestMillisGuess);
   } else if (sortBy === 'guess') {
     sortBy = 'time';
-    printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
+    printScoresTime(topScoresTime,playerNamesTime,fastestMinsTime,fastestSecsTime,fastestMillisTime);
   }
+};
+
+function clearScores() {
+  const highScoresList = document.querySelector(".high-scores");
+  highScoresList.innerHTML = "";
+  const highScoresHeading = document.querySelector(".highScoreHeading");
+  highScoresHeading.innerHTML = "";
+  localStorage.clear();
 };
 
 // Loop that adds event listeners to each tile.

@@ -54,8 +54,14 @@ img {
 .highScoreLines {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 20px;
   color: #66202a;
+}
+
+.smallLetters {
+  font-size: 16px;
+  color: black;
 }
 
 /* animations */
