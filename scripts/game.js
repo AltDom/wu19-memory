@@ -21,7 +21,10 @@ const alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','
 
 // Declaring variable for the number of top score lines (can be changed to whatever you like).
 const numberOfTopScores = 10;
+let sortBy = 'time';
+let highScoresArray = [];
 let topScores = [];
+let playerNames = [];
 let fastestMins = [];
 let fastestSecs = [];
 let fastestMillis = [];
@@ -106,6 +109,30 @@ function shuffleGridItems(array) {
     return array;
 };
 
+function unpackScores() {
+  playerNames = JSON.parse(localStorage.getItem('playerNames'));
+  topScores = JSON.parse(localStorage.getItem('topScores'));
+  fastestMins = JSON.parse(localStorage.getItem('fastestMins'));
+  fastestSecs = JSON.parse(localStorage.getItem('fastestSecs'));
+  fastestMillis = JSON.parse(localStorage.getItem('fastestMillis'));
+  if (topScores === null) {
+    topScores = [];
+    playerNames = [];
+    fastestMins = [];
+    fastestSecs = [];
+    fastestMillis = [];
+  }
+}
+
+function storeScores() {
+  localStorage.clear();
+  localStorage.setItem('playerNames', JSON.stringify(playerNames));
+  localStorage.setItem('topScores', JSON.stringify(topScores));
+  localStorage.setItem('fastestMins', JSON.stringify(fastestMins));
+  localStorage.setItem('fastestSecs', JSON.stringify(fastestSecs));
+  localStorage.setItem('fastestMillis', JSON.stringify(fastestMillis));
+}
+
 // Creates an HTML element from string.
 const stringToHTML = str => {
     const div = document.createElement("div");
@@ -119,18 +146,33 @@ const createTile = (title, icon) => {
 };
 
 // Creates a high score line.
-const createHighScore = (number, guesses, name, minute, second, milli) => {
-  return `<div class="highScoreLines">${number}. ${name} ${minute} mins ${second}.${milli} secs. ${guesses} guesses  </div>`;
+const createHighScoreTime = (number, guesses, name, minute, second, milli) => {
+  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${minute} mins ${second}.${milli} secs. ${guesses} guesses</div></div>`;
 };
 
 // Creates a high score line for when its one minute.
-const createOneMinuteHighScore = (number, guesses, name, minute, second, milli) => {
-  return `<div class="highScoreLines">${number}. ${name}  ${minute} min ${second}.${milli} secs. ${guesses} guesses  </div>`;
+const createOneMinuteHighScoreTime = (number, guesses, name, minute, second, milli) => {
+  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${minute} min ${second}.${milli} secs. ${guesses} guesses</div></div>`;
 };
 
 // Creates an alternate high score line without minutes (if its a fast game).
-const createMinutelessHighScore = (number, guesses, name, second, milli) => {
-  return `<div class="highScoreLines">${number}. ${name}  ${second}.${milli} secs. ${guesses} guesses  </div>`;
+const createMinutelessHighScoreTime = (number, guesses, name, second, milli) => {
+  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${second}.${milli} secs. ${guesses} guesses</div></div>`;
+};
+
+// Creates a high score line.
+const createHighScoreGuess = (number, guesses, name, minute, second, milli) => {
+  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses. ${minute} mins ${second}.${milli} secs</div></div>`;
+};
+
+// Creates a high score line for when its one minute.
+const createOneMinuteHighScoreGuess = (number, guesses, name, minute, second, milli) => {
+  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses. ${minute} min ${second}.${milli} secs</div></div>`;
+};
+
+// Creates an alternate high score line without minutes (if its a fast game).
+const createMinutelessHighScoreGuess = (number, guesses, name, second, milli) => {
+  return `<div class="highScoreLines"><div>${number}. ${name}</div><div>${guesses} guesses. ${second}.${milli} secs</div></div>`;
 };
 
 // Refresh/reshuffle function (Note: we can pass in a subset of gridItems).
@@ -195,50 +237,40 @@ function grabPlayerName() {
   return playerName;
 }
 
-// Runs when tiles match.
-function matched() {
-  openedTiles[0].classList.add("match", "disabled");
-  openedTiles[1].classList.add("match", "disabled");
-  if (matchedTile.length === 16) {
-    milli--;
-    clearInterval(interval);
-    guesses = parseInt(counter.innerHTML);
-    playerName = grabPlayerName();
-
-    let playerNames = JSON.parse(localStorage.getItem('playerNames'));
-    let topScores = JSON.parse(localStorage.getItem('topScores'));
-    let fastestMins = JSON.parse(localStorage.getItem('fastestMins'));
-    let fastestSecs = JSON.parse(localStorage.getItem('fastestSecs'));
-    let fastestMillis = JSON.parse(localStorage.getItem('fastestMillis'));
-    if (topScores === null) {
-      topScores = [];
-      playerNames = [];
-      fastestMins = [];
-      fastestSecs = [];
-      fastestMillis = [];
-    }
-    // getArray.forEach(number => {
-    //   highScores.push(JSON.parse(localStorage.getItem(number)));
-    //   fastestMins.push(JSON.parse(localStorage.getItem(number)));
-    //   fastestSecs.push(JSON.parse(localStorage.getItem(number)));
-    //   fastestMillis.push(JSON.parse(localStorage.getItem(number)));
-    // });
-     // let highScores = JSON.parse(localStorage.getItem('highScores'));
-    // // console.log(highScores);
-    // if(highScores!==null) {
-    //   highScores.push(scores);
-    //   localStorage.clear();
-    //   localStorage.setItem('highScores', JSON.stringify(highScores));
-    // } else {
-    //   localStorage.clear();
-    //   localStorage.setItem('highScores', JSON.stringify(scores));
-    // }
-    // scores = [];
-
-    // This if statement checks the current run and sorts the high scores list.
-    if (topScores.length >= 1) {
-      for (let i=0;i<topScores.length;i++) {
-        if (guesses<topScores[i]) {
+function sortScoresByTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis) {
+  // This if statement checks the current run and sorts the high scores list.
+  if (topScores.length >= 1) {
+    for (let i=0;i<topScores.length;i++) {
+      if (minute<fastestMins[i]) {
+        if (i === numberOfTopScores-1) {
+          topScores.pop();
+          topScores.push(guesses);
+          playerNames.pop();
+          playerNames.push(playerName);
+          fastestMins.pop();
+          fastestMins.push(minute);
+          fastestSecs.pop();
+          fastestSecs.push(second);
+          fastestMillis.pop();
+          fastestMillis.push(milli);
+          break;
+        } else if (i === 0) {
+          topScores.unshift(guesses);
+          playerNames.unshift(playerName);
+          fastestMins.unshift(minute);
+          fastestSecs.unshift(second);
+          fastestMillis.unshift(milli);
+          break;
+        } else {
+          topScores.splice(i,0,guesses);
+          playerNames.splice(i,0,playerName);
+          fastestMins.splice(i,0,minute);
+          fastestSecs.splice(i,0,second);
+          fastestMillis.splice(i,0,milli);
+          break;
+        }
+      } else if (minute === fastestMins[i]) {
+        if (second<fastestSecs[i]) {
           if (i === numberOfTopScores-1) {
             topScores.pop();
             topScores.push(guesses);
@@ -260,14 +292,13 @@ function matched() {
             break;
           } else {
             topScores.splice(i,0,guesses);
-            playerNames.splice(i,0,playerName);
             fastestMins.splice(i,0,minute);
             fastestSecs.splice(i,0,second);
             fastestMillis.splice(i,0,milli);
             break;
           }
-        } else if (guesses === topScores[i]) {
-          if (minute<fastestMins[i]) {
+        } else if (second === fastestSecs[i]) {
+          if (milli<fastestMillis[i]) {
             if (i === numberOfTopScores-1) {
               topScores.pop();
               topScores.push(guesses);
@@ -294,8 +325,8 @@ function matched() {
               fastestMillis.splice(i,0,milli);
               break;
             }
-          } else if (minute === fastestMins[i]) {
-            if (second<fastestSecs[i]) {
+          } else if (milli === fastestMillis[i]) {
+            if (guesses<topScores[i]) {
               if (i === numberOfTopScores-1) {
                 topScores.pop();
                 topScores.push(guesses);
@@ -322,91 +353,257 @@ function matched() {
                 fastestMillis.splice(i,0,milli);
                 break;
               }
-            } else if (second === fastestSecs[i]) {
-              if (milli<fastestMillis[i]) {
-                if (i === numberOfTopScores-1) {
-                  topScores.pop();
-                  topScores.push(guesses);
-                  playerNames.pop();
-                  playerNames.push(playerName);
-                  fastestMins.pop();
-                  fastestMins.push(minute);
-                  fastestSecs.pop();
-                  fastestSecs.push(second);
-                  fastestMillis.pop();
-                  fastestMillis.push(milli);
-                  break;
-                } else if (i === 0) {
-                  topScores.unshift(guesses);
-                  playerNames.unshift(playerName);
-                  fastestMins.unshift(minute);
-                  fastestSecs.unshift(second);
-                  fastestMillis.unshift(milli);
-                  break;
-                } else {
-                  topScores.splice(i,0,guesses);
-                  fastestMins.splice(i,0,minute);
-                  fastestSecs.splice(i,0,second);
-                  fastestMillis.splice(i,0,milli);
-                  break;
-                }
+            }
+          }
+        }
+      }
+      if (i===topScores.length-1 && topScores.length<numberOfTopScores) {
+        topScores.push(guesses);
+        playerNames.push(playerName);
+        fastestMins.push(minute);
+        fastestSecs.push(second);
+        fastestMillis.push(milli);
+        break;
+      }
+    }
+    if (topScores.length>numberOfTopScores) {
+      topScores.pop();
+      playerNames.pop();
+      fastestMins.pop();
+      fastestSecs.pop();
+      fastestMillis.pop();
+    }
+  } else {
+    topScores.push(guesses);
+    playerNames.push(playerName);
+    fastestMins.push(minute);
+    fastestSecs.push(second);
+    fastestMillis.push(milli);
+  }
+  return [topScores,playerNames,fastestMins,fastestSecs,fastestMillis];
+};
+
+function sortScoresByGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis) {
+  // This if statement checks the current run and sorts the high scores list.
+  if (topScores.length >= 1) {
+    for (let i=0;i<topScores.length;i++) {
+      if (guesses<topScores[i]) {
+        if (i === numberOfTopScores-1) {
+          topScores.pop();
+          topScores.push(guesses);
+          playerNames.pop();
+          playerNames.push(playerName);
+          fastestMins.pop();
+          fastestMins.push(minute);
+          fastestSecs.pop();
+          fastestSecs.push(second);
+          fastestMillis.pop();
+          fastestMillis.push(milli);
+          break;
+        } else if (i === 0) {
+          topScores.unshift(guesses);
+          playerNames.unshift(playerName);
+          fastestMins.unshift(minute);
+          fastestSecs.unshift(second);
+          fastestMillis.unshift(milli);
+          break;
+        } else {
+          topScores.splice(i,0,guesses);
+          playerNames.splice(i,0,playerName);
+          fastestMins.splice(i,0,minute);
+          fastestSecs.splice(i,0,second);
+          fastestMillis.splice(i,0,milli);
+          break;
+        }
+      } else if (guesses === topScores[i]) {
+        if (minute<fastestMins[i]) {
+          if (i === numberOfTopScores-1) {
+            topScores.pop();
+            topScores.push(guesses);
+            playerNames.pop();
+            playerNames.push(playerName);
+            fastestMins.pop();
+            fastestMins.push(minute);
+            fastestSecs.pop();
+            fastestSecs.push(second);
+            fastestMillis.pop();
+            fastestMillis.push(milli);
+            break;
+          } else if (i === 0) {
+            topScores.unshift(guesses);
+            playerNames.unshift(playerName);
+            fastestMins.unshift(minute);
+            fastestSecs.unshift(second);
+            fastestMillis.unshift(milli);
+            break;
+          } else {
+            topScores.splice(i,0,guesses);
+            fastestMins.splice(i,0,minute);
+            fastestSecs.splice(i,0,second);
+            fastestMillis.splice(i,0,milli);
+            break;
+          }
+        } else if (minute === fastestMins[i]) {
+          if (second<fastestSecs[i]) {
+            if (i === numberOfTopScores-1) {
+              topScores.pop();
+              topScores.push(guesses);
+              playerNames.pop();
+              playerNames.push(playerName);
+              fastestMins.pop();
+              fastestMins.push(minute);
+              fastestSecs.pop();
+              fastestSecs.push(second);
+              fastestMillis.pop();
+              fastestMillis.push(milli);
+              break;
+            } else if (i === 0) {
+              topScores.unshift(guesses);
+              playerNames.unshift(playerName);
+              fastestMins.unshift(minute);
+              fastestSecs.unshift(second);
+              fastestMillis.unshift(milli);
+              break;
+            } else {
+              topScores.splice(i,0,guesses);
+              fastestMins.splice(i,0,minute);
+              fastestSecs.splice(i,0,second);
+              fastestMillis.splice(i,0,milli);
+              break;
+            }
+          } else if (second === fastestSecs[i]) {
+            if (milli<fastestMillis[i]) {
+              if (i === numberOfTopScores-1) {
+                topScores.pop();
+                topScores.push(guesses);
+                playerNames.pop();
+                playerNames.push(playerName);
+                fastestMins.pop();
+                fastestMins.push(minute);
+                fastestSecs.pop();
+                fastestSecs.push(second);
+                fastestMillis.pop();
+                fastestMillis.push(milli);
+                break;
+              } else if (i === 0) {
+                topScores.unshift(guesses);
+                playerNames.unshift(playerName);
+                fastestMins.unshift(minute);
+                fastestSecs.unshift(second);
+                fastestMillis.unshift(milli);
+                break;
+              } else {
+                topScores.splice(i,0,guesses);
+                fastestMins.splice(i,0,minute);
+                fastestSecs.splice(i,0,second);
+                fastestMillis.splice(i,0,milli);
+                break;
               }
             }
           }
         }
-        if (i===topScores.length-1 && topScores.length<numberOfTopScores) {
-          topScores.push(guesses);
-          playerNames.push(playerName);
-          fastestMins.push(minute);
-          fastestSecs.push(second);
-          fastestMillis.push(milli);
-          break;
-        }
       }
-      if (topScores.length>numberOfTopScores) {
-        topScores.pop();
-        playerNames.pop();
-        fastestMins.pop();
-        fastestSecs.pop();
-        fastestMillis.pop();
+      if (i===topScores.length-1 && topScores.length<numberOfTopScores) {
+        topScores.push(guesses);
+        playerNames.push(playerName);
+        fastestMins.push(minute);
+        fastestSecs.push(second);
+        fastestMillis.push(milli);
+        break;
       }
-    } else {
-      topScores.push(guesses);
-      playerNames.push(playerName);
-      fastestMins.push(minute);
-      fastestSecs.push(second);
-      fastestMillis.push(milli);
     }
-    // let highScores = JSON.parse(localStorage.getItem('highScores'));
-    // // console.log(highScores);
-    // if(highScores!==null) {
-    //   highScores.push(scores);
+    if (topScores.length>numberOfTopScores) {
+      topScores.pop();
+      playerNames.pop();
+      fastestMins.pop();
+      fastestSecs.pop();
+      fastestMillis.pop();
+    }
+  } else {
+    topScores.push(guesses);
+    playerNames.push(playerName);
+    fastestMins.push(minute);
+    fastestSecs.push(second);
+    fastestMillis.push(milli);
+  }
+  return [topScores,playerNames,fastestMins,fastestSecs,fastestMillis];
+};
+
+function printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis) {
+  let scoreListSize = topScores.length;
+  const highScoresList = document.querySelector(".high-scores");
+  highScoresList.innerHTML = "";
+  for (let i=0;i<scoreListSize;i++) {
+    let number = (i+1);
+    if (fastestMins[i] === 0) {
+      highScore = createMinutelessHighScoreTime(number,topScores[i],playerNames[i],fastestSecs[i],fastestMillis[i]);
+    } else if (fastestMins[i] === 1) {
+      highScore = createOneMinuteHighScoreTime(number,topScores[i],playerNames[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
+    } else {
+      highScore = createHighScoreTime(number,topScores[i],playerNames[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
+    }
+    highScoresList.appendChild(stringToHTML(highScore));
+  }
+}
+
+function printScoresGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis) {
+  let scoreListSize = topScores.length;
+  const highScoresList = document.querySelector(".high-scores");
+  highScoresList.innerHTML = "";
+  for (let i=0;i<scoreListSize;i++) {
+    let number = (i+1);
+    if (fastestMins[i] === 0) {
+      highScore = createMinutelessHighScoreGuess(number,topScores[i],playerNames[i],fastestSecs[i],fastestMillis[i]);
+    } else if (fastestMins[i] === 1) {
+      highScore = createOneMinuteHighScoreGuess(number,topScores[i],playerNames[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
+    } else {
+      highScore = createHighScoreGuess(number,topScores[i],playerNames[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
+    }
+    highScoresList.appendChild(stringToHTML(highScore));
+  }
+}
+
+// Runs when tiles match.
+function matched() {
+  openedTiles[0].classList.add("match", "disabled");
+  openedTiles[1].classList.add("match", "disabled");
+  if (matchedTile.length === 16) {
+    milli--;
+    clearInterval(interval);
+    guesses = parseInt(counter.innerHTML);
+    playerName = grabPlayerName();
+
+    // unpack scores from local storage
+    unpackScores();
+
+    // sort scores
+    if (sortBy === 'time') {
+      highScoresArray = sortScoresByTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
+    } else {
+      highScoresArray = sortScoresByGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
+    }
+
+    // unpack the scores after being sorted
+    topScores = highScoresArray[0];
+    playerNames = highScoresArray[1];
+    fastestMins = highScoresArray[2];
+    fastestSecs = highScoresArray[3];
+    fastestMillis = highScoresArray[4];
+
+    // put scores into local storage
+    storeScores();
     localStorage.clear();
     localStorage.setItem('playerNames', JSON.stringify(playerNames));
     localStorage.setItem('topScores', JSON.stringify(topScores));
     localStorage.setItem('fastestMins', JSON.stringify(fastestMins));
     localStorage.setItem('fastestSecs', JSON.stringify(fastestSecs));
     localStorage.setItem('fastestMillis', JSON.stringify(fastestMillis));
-    // } else {
-    //   localStorage.clear();
-    //   localStorage.setItem('highScores', JSON.stringify(scores));
-    // }
-    // scores = [];
 
     // print scores.
-    let scoreListSize = topScores.length;
-    const highScoresList = document.querySelector(".high-scores");
-    highScoresList.innerHTML = "";
-    for (let i=0;i<scoreListSize;i++) {
-      let number = (i+1);
-      if (fastestMins[i] === 0) {
-        highScore = createMinutelessHighScore(number,topScores[i],playerNames[i],fastestSecs[i],fastestMillis[i]);
-      } else if (fastestMins[i] === 1) {
-        highScore = createOneMinuteHighScore(number,topScores[i],playerNames[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
-      } else {
-        highScore = createHighScore(number,topScores[i],playerNames[i],fastestMins[i],fastestSecs[i],fastestMillis[i]);
-      }
-      highScoresList.appendChild(stringToHTML(highScore));
+    if (sortBy === 'time') {
+      printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
+    } else if (sortBy === 'guess') {
+      printScoresGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
     }
   }
   openedTiles[0].classList.remove("show", "open");
@@ -500,6 +697,17 @@ const flip = function () {
     this.classList.toggle("show");
     this.classList.toggle("disabled");
 }
+
+function toggleSort() {
+  unpackScores();
+  if (sortBy === 'time') {
+    sortBy = 'guess';
+    printScoresGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
+  } else if (sortBy === 'guess') {
+    sortBy = 'time';
+    printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis);
+  }
+};
 
 // Loop that adds event listeners to each tile.
 const tiles = document.querySelectorAll(".grid-item");

@@ -25,6 +25,7 @@ body {
   padding: 10px;
   margin: 2px;
   outline: none;
+  cursor: pointer;
 }
 
 .scoresAndButton {
@@ -49,6 +50,17 @@ body {
   font-size: 20px;
   border: 3px solid #66202a;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.sortMethodBtn {
+  padding: 10px 0px;
+  background-color: #e1b878;
+  color: #66202a;
+  font-size: 20px;
+  border: 3px solid #66202a;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .menu {
@@ -98,7 +110,7 @@ section {
 .name {
   color: black;
   display: flex;
-  padding: 2px;
+  padding: 4px;
   align-items: center;
 }
 
@@ -106,10 +118,10 @@ section {
   color: #66202a;
   display: flex;
   align-items: center;
-  padding: 2px;
+  padding: 0px 2px;
 }
 
 .letters div {
-  padding: 2px;
+  padding: 0px 2px;
 }
 
