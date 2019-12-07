@@ -1,6 +1,8 @@
 # Under Control
 
-<div style="text-align:center"><img  src="https://media.giphy.com/media/2qDVCzCejcrLy/giphy.gif" width="80%"></div>
+<p align="center">
+  <img  src="https://media.giphy.com/media/2qDVCzCejcrLy/giphy.gif" width="80%">
+</p>
 
 This is a project that I completed using HTML, CSS and JavaScript. It is a classic indie-styled memory game called Under Control. 
 
