@@ -90,3 +90,20 @@ img {
 		transform: perspective(400px);
 	}
 }
+
+@media only screen and (max-width: 500px) and (-webkit-min-device-pixel-ratio: 1) {
+  .grid {
+    padding: 2vw;
+    background-color: #66202a;
+    width: 90vw;
+    height: 90vw;
+    grid-gap: 2vw;
+    display: grid;
+    grid-template: 21vw 21vw 21vw 21vw / 21vw 21vw 21vw 21vw;
+  }
+
+  img {
+    padding: 1vw;
+    width: 20vw;
+  }
+}

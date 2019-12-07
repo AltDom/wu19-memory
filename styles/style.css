@@ -20,6 +20,7 @@ body {
 .lowerButtons {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .btn1, .btn2, .btn3 {
@@ -39,7 +40,7 @@ body {
 .scoresAndButton {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .highScoreHeading {
@@ -148,3 +149,33 @@ section {
   padding: 0px 4px;
 }
 
+@media only screen and (max-width: 500px) and (-webkit-min-device-pixel-ratio: 1) {
+  .heading {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: #66202a;
+    font-size: 30px;
+  }
+
+  .wrapper {
+    display: block;
+  }
+
+  .scoresAndButton {
+    margin-top: 5px;
+  }
+
+  .lowerButtons {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    justify-content: space-around;
+  }
+
+  .highScoreHeading {
+    margin-top: 5px;
+    margin-bottom: 7px;
+  }
+}

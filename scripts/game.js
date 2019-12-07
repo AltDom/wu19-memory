@@ -618,6 +618,10 @@ function matched() {
   openedTiles[1].classList.add("match", "disabled");
   if (matchedTile.length === 16) {
     milli--;
+    if (milli === -1) {
+      milli = 99;
+      second--;
+    }
     clearInterval(interval);
     guesses = parseInt(counter.innerHTML);
     playerName = grabPlayerName();
