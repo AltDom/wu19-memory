@@ -1,16 +1,16 @@
 # Under Control
 
-<img src="https://media.giphy.com/media/2qDVCzCejcrLy/giphy.gif" width="100%">
+<img src="https://media.giphy.com/media/2qDVCzCejcrLy/giphy.gif" width="80%">
 
 This is a project that I completed using HTML, CSS and JavaScript. It is a classic indie-styled memory game called Under Control. 
 
 ## About This Project
 * Click (Desktop) or tap (mobile) to flip the tiles in the grid, and try to match all the pairs with the least number of guesses and as quickly as you can. The game is completed when all of the pairs are matched.
-* Be sure to enter your name because both your 10 best times and 10 best minimum number of guesses will be saved as you play. E.g. if you get a top time but the number of guesses aren't one of your best, only the best time will be saved ..and vice versa. You can toggle between the two lists of high scores at any time. Unless you clear your scores, they will also save in your browser's local storage for the next time that you want to play.
-* So far the best time is 30 seconds 0 milliseconds, and the least number of guesses is 15 (just 7 moves off a perfect score) - recorded by DOM. Please send me a screenshot of your score if you make it into the global top 10 of one of the two categories, and I'll update the relevant list. You are only permitted one score in each list.
+* Be sure to enter your name because both your 10 best times and 10 best minimum number of guesses will be saved as you play. e.g. if you get a top time but the number of guesses aren't one of your best, only the best time will be saved ..or vice versa. You can toggle between the two lists of high scores at any given time. Unless you clear your scores, they will also save in your browser's local storage for the next time that you want to play.
+* Please let me know if you make your way into the global top 10 of one of the two categories. Just send me a screenshot of your score and I'll update the relevant list. You are only permitted one score in each list.
 
 ## Play Online or Clone the Project Files 
-* You can play online at `http://under-control.netlify.com`.
+* You can play online at [Netlify](http://under-control.netlify.com).
 
 ## Clone the Project Files
 * Clone the repository using `git clone https://github.com/AltDom/wu19-memory.git` in your chosen bash terminal.
@@ -19,7 +19,7 @@ This is a project that I completed using HTML, CSS and JavaScript. It is a class
 * Go live in your chosen browser.
 
 ## Top 10 Scores by Time
-1. DOM     30 secs 0 millis     (15 guesses)
+1. <pre>  DOM   30 secs 0 millis   (15 guesses)</pre>
 2. 
 3. 
 4. 
@@ -31,7 +31,7 @@ This is a project that I completed using HTML, CSS and JavaScript. It is a class
 10. 
 
 ## Top 10 Scores by Guesses
-1. DOM     15 Guesses     (30 secs 0 millis)
+1. <pre>  DOM   15 Guesses   (30 secs 0 millis)</pre>
 2.      
 3.      
 4. 
