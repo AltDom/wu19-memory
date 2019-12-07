@@ -1,6 +1,6 @@
 # Under Control
 
-<img src="https://media.giphy.com/media/2qDVCzCejcrLy/giphy.gif" width="80%">
+<div style="text-align:center"><img  src="https://media.giphy.com/media/2qDVCzCejcrLy/giphy.gif" width="80%"></div>
 
 This is a project that I completed using HTML, CSS and JavaScript. It is a classic indie-styled memory game called Under Control. 
 
@@ -19,7 +19,7 @@ This is a project that I completed using HTML, CSS and JavaScript. It is a class
 * Go live in your chosen browser.
 
 ## Top 10 Scores by Time
-1. <pre>  DOM   30 secs 0 millis   (15 guesses)</pre>
+1. &nbsp; DOM&nbsp; &nbsp;30 secs 0 millis&nbsp; &nbsp;(15 guesses)
 2. 
 3. 
 4. 
@@ -31,7 +31,7 @@ This is a project that I completed using HTML, CSS and JavaScript. It is a class
 10. 
 
 ## Top 10 Scores by Guesses
-1. <pre>  DOM   15 Guesses   (30 secs 0 millis)</pre>
+1. &nbsp; DOM&nbsp; &nbsp;15 Guesses&nbsp; &nbsp;(30 secs 0 millis)
 2.      
 3.      
 4. 
