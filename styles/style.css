@@ -1,181 +1,181 @@
 body {
-  background-color: #75acc0;
+    background-color: #75acc0;
 }
 
 .wrapper {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
 
 .heading {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  color: #66202a;
-  font-size: 40px;
-}
-
-.lowerButtons {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.btn1, .btn2, .btn3 {
-  padding: 11px;
-  border: 2px solid #66202a;
-  border-radius: 50%;
-  background-color: #e1b878;
-  margin: 2px;
-  outline: none;
-  cursor: pointer;
-}
-
-.btn1 {
-  margin-left: 91px;
-}
-
-.scoresAndButton {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.highScoreHeading {
-  width: 40vw;
-  margin-bottom: 18px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #66202a;
-}
-
-.newGame {
-  padding: 10px 10px;
-  background-color: #e1b878;
-  color: #66202a;
-  font-size: 18px;
-  border: 3px solid #66202a;
-  border-radius: 5px;
-  cursor: pointer;
-  outline: none;
-}
-
-.clearScoresBtn {
-  padding: 10px 10px;
-  background-color: #e1b878;
-  color: #66202a;
-  font-size: 18px;
-  border: 3px solid #66202a;
-  border-radius: 5px;
-  cursor: pointer;
-  outline: none;
-}
-
-.sortMethodBtn {
-  padding: 10px 10px;
-  background-color: #e1b878;
-  color: #66202a;
-  font-size: 18px;
-  border: 3px solid #66202a;
-  border-radius: 5px;
-  cursor: pointer;
-  outline: none;
-}
-
-.menu {
-  display: flex;
-}
-
-li {
-  padding: 0 10px;
-  list-style: none;
-}
-
-.grid {
-  margin: 0;
-}
-
-.game {
-  display: flex;
-  justify-content: space-around;
-  font-size: 24px;
-}
-
-.counttimer {
-  padding-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.git {
-  padding: 0 5px;
-  color: black;
-  width: 30px;
-}
-
-section {
-  display: block;
-}
-
-.name {
-  color: black;
-  display: flex;
-  padding: 4px;
-  font-size: 30px;
-  align-items: center;
-}
-
-.letters {
-  color: #66202a;
-  display: flex;
-  align-items: center;
-  padding: 0px 6px;
-  font-size: 30px;
-}
-
-.letters div {
-  padding: 0px 4px;
-}
-
-@media only screen and (max-width: 500px) and (-webkit-min-device-pixel-ratio: 1) {
-  .heading {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     color: #66202a;
-    font-size: 30px;
-  }
+    font-size: 40px;
+}
 
-  .wrapper {
-    display: block;
-  }
-
-  .scoresAndButton {
-    margin-top: 5px;
-  }
-
-  .lowerButtons {
-    margin-top: 10px;
+.lowerButtons {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 20px;
-    justify-content: space-around;
-  }
+}
 
-  .highScoreHeading {
-    margin-top: 5px;
-    margin-bottom: 7px;
-  }
+.btn1, .btn2, .btn3 {
+    padding: 11px;
+    border: 2px solid #66202a;
+    border-radius: 50%;
+    background-color: #e1b878;
+    margin: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn1 {
+    margin-left: 91px;
+}
+
+.scoresAndButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.highScoreHeading {
+    width: 40vw;
+    margin-bottom: 18px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #66202a;
+}
+
+.newGame {
+    padding: 10px 10px;
+    background-color: #e1b878;
+    color: #66202a;
+    font-size: 18px;
+    border: 3px solid #66202a;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.clearScoresBtn {
+    padding: 10px 10px;
+    background-color: #e1b878;
+    color: #66202a;
+    font-size: 18px;
+    border: 3px solid #66202a;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.sortMethodBtn {
+    padding: 10px 10px;
+    background-color: #e1b878;
+    color: #66202a;
+    font-size: 18px;
+    border: 3px solid #66202a;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.menu {
+    display: flex;
+}
+
+li {
+    padding: 0 10px;
+    list-style: none;
+}
+
+.grid {
+    margin: 0;
+}
+
+.game {
+    display: flex;
+    justify-content: space-around;
+    font-size: 24px;
+}
+
+.counttimer {
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.git {
+    padding: 0 5px;
+    color: black;
+    width: 30px;
+}
+
+section {
+    display: block;
+}
+
+.name {
+    color: black;
+    display: flex;
+    padding: 4px;
+    font-size: 30px;
+    align-items: center;
+}
+
+.letters {
+    color: #66202a;
+    display: flex;
+    align-items: center;
+    padding: 0px 6px;
+    font-size: 30px;
+}
+
+.letters div {
+    padding: 0px 4px;
+}
+
+@media only screen and (max-width: 500px) and (-webkit-min-device-pixel-ratio: 1) {
+    .heading {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        color: #66202a;
+        font-size: 30px;
+    }
+
+    .wrapper {
+        display: block;
+    }
+
+    .scoresAndButton {
+        margin-top: 5px;
+    }
+
+    .lowerButtons {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        justify-content: space-around;
+    }
+
+    .highScoreHeading {
+        margin-top: 5px;
+        margin-bottom: 7px;
+    }
 }

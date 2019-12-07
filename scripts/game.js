@@ -44,6 +44,7 @@ let letter1 = document.querySelector('.letter1');
 let letter2 = document.querySelector('.letter2');
 let letter3 = document.querySelector('.letter3');
 
+// Functions to change name letters.
 const nextLetter1 = () => {
   let currentLetter = letter1.innerHTML;
   for (let i=0 ; i<30 ; i++) {
@@ -98,17 +99,18 @@ btn3.addEventListener("click", nextLetter3);
 
 // A function which shuffles unmatched grid items.
 function shuffleGridItems(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    };
-    return array;
+  let currentIndex = array.length, temporaryValue, randomIndex;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  };
+  return array;
 };
 
+// Pack and unpack scores from local storage.
 function unpackScores() {
   playerNamesTime = JSON.parse(localStorage.getItem('playerNamesTime'));
   topScoresTime = JSON.parse(localStorage.getItem('topScoresTime'));
@@ -150,14 +152,14 @@ function storeScores() {
 
 // Creates an HTML element from string.
 const stringToHTML = str => {
-    const div = document.createElement("div");
-    div.innerHTML = str;
-    return div.firstChild;
+  const div = document.createElement("div");
+  div.innerHTML = str;
+  return div.firstChild;
 };
 
 // Create tile template with a template literal.
 const createTile = (title, icon) => {
-    return `<div class="grid-item" title="${title}"><img src="${icon}"></div>`;
+  return `<div class="grid-item" title="${title}"><img src="${icon}"></div>`;
 };
 
 // Creates a high score line.
@@ -216,36 +218,36 @@ const createMinutelessHighScoreGuess = (number, guesses, name, second, milli) =>
 
 // Refresh/reshuffle function (Note: we can pass in a subset of gridItems).
 function refresh(array) {
-    const grid = document.querySelector(".grid");
-    let shuffledGridItems = shuffleGridItems(array);
-    shuffledGridItems.forEach(banana => { // Create each tile.
-        const element = createTile(banana.name, banana.image);
-        grid.appendChild(stringToHTML(element));
-    });
-    openedTiles = [];
-    count = 0; // Reset number of guesses and timer.
-    counter.innerHTML = count;
-    second = 0;
-    minute = 0;
-    let timer = document.querySelector(".timer");
-    timer.innerHTML = "0.00 secs";
-    clearInterval(interval);
+  const grid = document.querySelector(".grid");
+  let shuffledGridItems = shuffleGridItems(array);
+  shuffledGridItems.forEach(banana => { // Create each tile.
+    const element = createTile(banana.name, banana.image);
+    grid.appendChild(stringToHTML(element));
+  });
+  openedTiles = [];
+  count = 0; // Reset number of guesses and timer.
+  counter.innerHTML = count;
+  second = 0;
+  minute = 0;
+  let timer = document.querySelector(".timer");
+  timer.innerHTML = "0.00 secs";
+  clearInterval(interval);
 };
 
 // This function runs if the New Game / Replay button is clicked (different to refresh / reloading the browser).
 function restart() {
-    const grid = document.querySelector(".grid");
-    if (grid.innerHTML === "") { // Precautionary - if there are no tiles run the usual refresh() function.
-        refresh(gridItems);
-    } else { // Remove all existing divs and classes from each the grid, run the refresh() function and initiate the flip event listeners.
-        grid.innerHTML = "";
-        refresh(gridItems);
-        let tiles = document.querySelectorAll(".grid-item");
-        for (let i = 0; i < tiles.length; i++) {
-            tiles[i].addEventListener("click", flip);
-            tiles[i].addEventListener("click", tileFlip);
-        };
-    }
+  const grid = document.querySelector(".grid");
+  if (grid.innerHTML === "") { // Precautionary - if there are no tiles run the usual refresh() function.
+    refresh(gridItems);
+  } else { // Remove all existing divs and classes from each the grid, run the refresh() function and initiate the flip event listeners.
+    grid.innerHTML = "";
+    refresh(gridItems);
+    let tiles = document.querySelectorAll(".grid-item");
+    for (let i = 0; i < tiles.length; i++) {
+      tiles[i].addEventListener("click", flip);
+      tiles[i].addEventListener("click", tileFlip);
+    };
+  }
 }
 
 // refresh the grid with each reload of the window.
@@ -276,6 +278,7 @@ function grabPlayerName() {
   return playerName;
 }
 
+// Checks and sorts the current results with those from the current high scores lists.
 function sortScoresByTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis) {
   // This if statement checks the current run and sorts the high scores list.
   if (topScores.length >= 1) {
@@ -574,6 +577,7 @@ function sortScoresByGuess(topScores,playerNames,fastestMins,fastestSecs,fastest
   return [topScores,playerNames,fastestMins,fastestSecs,fastestMillis];
 };
 
+// Print scores by Time.
 function printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis) {
   let scoreListSize = topScores.length;
   const highScoresList = document.querySelector(".high-scores");
@@ -593,6 +597,7 @@ function printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMi
   }
 }
 
+// Print scores by Guess.
 function printScoresGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis) {
   let scoreListSize = topScores.length;
   const highScoresList = document.querySelector(".high-scores");
@@ -626,14 +631,14 @@ function matched() {
     guesses = parseInt(counter.innerHTML);
     playerName = grabPlayerName();
 
-    // unpack scores from local storage
+    // Unpack scores from local storage.
     unpackScores();
 
-    // sort scores by time and guesses
+    // Sort scores by time and guesses.
     highScoresArrayTime = sortScoresByTime(topScoresTime,playerNamesTime,fastestMinsTime,fastestSecsTime,fastestMillisTime);
     highScoresArrayGuess = sortScoresByGuess(topScoresGuess,playerNamesGuess,fastestMinsGuess,fastestSecsGuess,fastestMillisGuess);
 
-    // unpack scores after being sorted
+    // Unpack scores after being sorted.
     topScoresTime = highScoresArrayTime[0];
     playerNamesTime = highScoresArrayTime[1];
     fastestMinsTime = highScoresArrayTime[2];
@@ -645,9 +650,9 @@ function matched() {
     fastestSecsGuess = highScoresArrayGuess[3];
     fastestMillisGuess = highScoresArrayGuess[4];
 
-    // put scores into local storage
+    // Put scores into local storage.
     storeScores();
-    // print scores.
+    // Print scores.
     if (sortBy === 'time') {
       printScoresTime(topScoresTime,playerNamesTime,fastestMinsTime,fastestSecsTime,fastestMillisTime);
     } else if (sortBy === 'guess') {
@@ -659,16 +664,16 @@ function matched() {
   openedTiles = [];
 }
 
-// function called when tiles don't match.
+// Function called when tiles don't match.
 function unmatched() {
   openedTiles[0].classList.add("unmatched");
   openedTiles[1].classList.add("unmatched");
   disable();
   setTimeout(function() {
-      openedTiles[0].classList.remove("show", "open", "unmatched");
-      openedTiles[1].classList.remove("show", "open", "unmatched");
-      enable();
-      openedTiles = [];
+    openedTiles[0].classList.remove("show", "open", "unmatched");
+    openedTiles[1].classList.remove("show", "open", "unmatched");
+    enable();
+    openedTiles = [];
   },1000);
 }
 
@@ -687,7 +692,7 @@ function enable() {
   tiles.forEach(element => {
     element.classList.remove('disabled');
       for (let i = 0; i < matchedTile.length; i++) {
-          matchedTile[i].classList.add("disabled");
+        matchedTile[i].classList.add("disabled");
       }
   });
 }
@@ -696,54 +701,54 @@ function enable() {
 function guessCounter() {
   count++;
   counter.innerHTML = count;
-  if (count == 1) { // Start timer on first guess
-      second = 0;
-      minute = 0;
-      hour = 0;
-      startTimer();
+  if (count == 1) { // Start timer on first paired guess.
+    second = 0;
+    minute = 0;
+    hour = 0;
+    startTimer();
   }
 }
 
 // Game timer.
 let timer = document.querySelector(".timer");
 function startTimer() {
-        interval = setInterval(function() {
-          if (minute===0) {
-            if (milli>=0 && milli<=9) {
-              timer.innerHTML = second+".0"+milli+" secs";
-            } else {
-              timer.innerHTML = second+"."+milli+" secs";
-            }
-          } else if (minute===1) {
-            if (milli>=0 && milli<=9) {
-              timer.innerHTML = minute+" min "+second+".0"+milli+" secs";
-            } else {
-              timer.innerHTML = minute+" min "+second+"."+milli+" secs";
-            }
-          } else {
-            if (milli>=0 && milli<=9) {
-              timer.innerHTML = minute+" mins "+second+".0"+milli+" secs";
-            } else {
-              timer.innerHTML = minute+" mins "+second+"."+milli+" secs";
-            }
-          }
-        milli++;
-        if (milli == 100) {
-            second++;
-            milli=0;
-        }
-        if (second == 60) {
-          minute++;
-          second=0;
-        }
-    },10);
+  interval = setInterval(function() {
+    if (minute===0) {
+      if (milli>=0 && milli<=9) {
+        timer.innerHTML = second+".0"+milli+" secs";
+      } else {
+        timer.innerHTML = second+"."+milli+" secs";
+      }
+    } else if (minute===1) {
+      if (milli>=0 && milli<=9) {
+        timer.innerHTML = minute+" min "+second+".0"+milli+" secs";
+      } else {
+        timer.innerHTML = minute+" min "+second+"."+milli+" secs";
+      }
+    } else {
+      if (milli>=0 && milli<=9) {
+        timer.innerHTML = minute+" mins "+second+".0"+milli+" secs";
+      } else {
+        timer.innerHTML = minute+" mins "+second+"."+milli+" secs";
+      }
+    }
+    milli++;
+    if (milli == 100) {
+        second++;
+        milli=0;
+    }
+    if (second == 60) {
+      minute++;
+      second=0;
+    }
+  },10);
 }
 
 // Toggles the open, show & disabled classed on the clicked tile/grid-item.
 const flip = function () {
-    this.classList.toggle("open");
-    this.classList.toggle("show");
-    this.classList.toggle("disabled");
+  this.classList.toggle("open");
+  this.classList.toggle("show");
+  this.classList.toggle("disabled");
 }
 
 function toggleSort() {
@@ -757,6 +762,7 @@ function toggleSort() {
   }
 };
 
+// Clears scores from view and local storage.
 function clearScores() {
   const highScoresList = document.querySelector(".high-scores");
   highScoresList.innerHTML = "";
@@ -768,6 +774,6 @@ function clearScores() {
 // Loop that adds event listeners to each tile.
 const tiles = document.querySelectorAll(".grid-item");
 for (let i = 0; i < tiles.length; i++) {
-    tiles[i].addEventListener("click", flip);
-    tiles[i].addEventListener("click", tileFlip);
+  tiles[i].addEventListener("click", flip);
+  tiles[i].addEventListener("click", tileFlip);
 };
