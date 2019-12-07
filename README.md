@@ -4,7 +4,7 @@
   <img  src="https://media.giphy.com/media/2qDVCzCejcrLy/giphy.gif" width="80%">
 </p>
 
-This is a classic indie-styled memory game called **Under Control**. It's a project I developed using HTML, CSS and JavaScript. 
+This is a classic indie-styled memory game called **Under Control**. It's a project I developed using HTML, CSS & JavaScript. 
 
 ## About This Project
 * Click (Desktop) or tap (mobile) to flip the tiles in the grid, and try to match all the pairs with the least number of guesses and as quickly as you can. The game is completed when all of the pairs are matched.
