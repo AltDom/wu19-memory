@@ -11,7 +11,7 @@ This is a classic indie-styled memory game called **Under Control**. It's a proj
 * Be sure to enter your name because both your 10 best times and 10 best minimum number of guesses will be saved as you play. e.g. if you get a top time but the number of guesses aren't one of your best, only the best time will be saved ..or vice versa. You can toggle between the two lists of high scores at any given time. Unless you clear your scores, they will also save in your browser's local storage for the next time that you want to play.
 * Please let me know if you make your way into the global top 10 of one of the two categories. Just send me a screenshot of your score and I'll update the relevant list. You are only permitted one score in each list.
 
-## Play Online or Clone the Project Files 
+## Play Online 
 * You can play online at [Netlify](http://under-control.netlify.com).
 
 ## Clone the Project Files
