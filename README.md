@@ -49,6 +49,16 @@ This is a classic indie-styled memory game called **Under Control**. It's a proj
 * Thomas Sönnerstam
 
 ## Code Review by Terese Thulin
+* I suggest adding a description to the repository so a user will know what the project is about when visiting your profile
+
+* [index.html: L34](https://github.com/AltDom/wu19-memory/blob/efe44556c5017ca3f5b17b165397f78ce70315c3/index.html#L34) - It’s recommended to use consistent casing. I suggest changing to camelCase here.
+
+* [index.html: L31 - 32](https://github.com/AltDom/wu19-memory/blob/efe44556c5017ca3f5b17b165397f78ce70315c3/index.html#L31) - Adding line breaks would increase readability.
+
+* [style.css: L 11 - 179](https://github.com/AltDom/wu19-memory/blob/efe44556c5017ca3f5b17b165397f78ce70315c3/styles/style.css#L11) - It’s recommended to use responsive units instead of pixel units
+
+* [style.css: L 152](https://github.com/AltDom/wu19-memory/blob/efe44556c5017ca3f5b17b165397f78ce70315c3/styles/style.css#L152 - It’s recommended to design mobile-first and use breakpoints for desktop
+
 
 ## License
 This assignment is licensed under the MIT License. You can get all the details [here](https://github.com/AltDom/wu19-memory/blob/master/LICENSE). 
