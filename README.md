@@ -21,9 +21,9 @@ This is a classic indie-styled memory game called **Under Control**. It's a proj
 * Go live in your chosen browser.
 
 ## Top 10 Scores by Time
-1. &nbsp; DOM&nbsp; &nbsp;30 secs 0 millis&nbsp; &nbsp;(15 guesses)
-2. 
-3. 
+1. &nbsp; KMD&nbsp; &nbsp;30 secs 0 millis&nbsp; &nbsp;(15 guesses)
+2. &nbsp; ALB&nbsp; &nbsp;33 secs 0 millis&nbsp; &nbsp;(16 guesses)
+3. &nbsp; TSS&nbsp; &nbsp;55 secs 84 millis&nbsp; &nbsp;(24 guesses)
 4. 
 5. 
 6. 
@@ -33,9 +33,9 @@ This is a classic indie-styled memory game called **Under Control**. It's a proj
 10. 
 
 ## Top 10 Scores by Guesses
-1. &nbsp; DOM&nbsp; &nbsp;15 Guesses&nbsp; &nbsp;(30 secs 0 millis)
-2.      
-3.      
+1. &nbsp; KMD&nbsp; &nbsp;15 Guesses&nbsp; &nbsp;(30 secs 0 millis)
+2. &nbsp; ALB&nbsp; &nbsp;16 Guesses&nbsp; &nbsp;(33 secs 0 millis)
+3. &nbsp; TSS&nbsp; &nbsp;24 Guesses&nbsp; &nbsp;(55 secs 84 millis)     
 4. 
 5. 
 6. 
@@ -46,7 +46,7 @@ This is a classic indie-styled memory game called **Under Control**. It's a proj
 
 ## Testers
 * Andreas Lindberg
-* Thomas Sönnerstam Longa
+* Thomas Sönnerstam
 
 ## Code Review by Terese Thulin
 
