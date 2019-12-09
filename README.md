@@ -57,7 +57,7 @@ This is a classic indie-styled memory game called **Under Control**. It's a proj
 
 * [style.css: L 11 - 179](https://github.com/AltDom/wu19-memory/blob/efe44556c5017ca3f5b17b165397f78ce70315c3/styles/style.css#L11) - It’s recommended to use responsive units instead of pixel units
 
-* [style.css: L 152](https://github.com/AltDom/wu19-memory/blob/efe44556c5017ca3f5b17b165397f78ce70315c3/styles/style.css#L152 - It’s recommended to design mobile-first and use breakpoints for desktop
+* [style.css: L 152](https://github.com/AltDom/wu19-memory/blob/efe44556c5017ca3f5b17b165397f78ce70315c3/styles/style.css#L152) - It’s recommended to design mobile-first and use breakpoints for desktop
 
 
 ## License
