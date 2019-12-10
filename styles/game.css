@@ -22,7 +22,7 @@ img {
     background: #66202a;
     cursor: default;
     animation: flipY;
-    backface-visibility: visible !important;
+    backface-visibility: visible;
     animation-duration: .75s;
 }
 
@@ -31,13 +31,13 @@ img {
     background: #e1b878;
     font-size: 33px;
     animation-name: rubberBand;
-    backface-visibility: visible !important;
+    backface-visibility: visible;
     animation-duration: .75s;
 }
 
 .grid .grid-item.unmatched {
     animation-name: pulse;
-    backface-visibility: visible !important;
+    backface-visibility: visible;
     animation-duration: .75s;
     background: #66202a;
 }
