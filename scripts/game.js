@@ -580,7 +580,7 @@ function sortScoresByGuess(topScores,playerNames,fastestMins,fastestSecs,fastest
 // Print scores by Time.
 function printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMillis) {
   let scoreListSize = topScores.length;
-  const highScoresList = document.querySelector(".high-scores");
+  const highScoresList = document.querySelector(".highScores");
   highScoresList.innerHTML = "";
   const highScoresHeading = document.querySelector(".highScoreHeading");
   highScoresHeading.innerHTML = `<div>High Scores</div>`;
@@ -600,7 +600,7 @@ function printScoresTime(topScores,playerNames,fastestMins,fastestSecs,fastestMi
 // Print scores by Guess.
 function printScoresGuess(topScores,playerNames,fastestMins,fastestSecs,fastestMillis) {
   let scoreListSize = topScores.length;
-  const highScoresList = document.querySelector(".high-scores");
+  const highScoresList = document.querySelector(".highScores");
   highScoresList.innerHTML = "";
   const highScoresHeading = document.querySelector(".highScoreHeading");
   highScoresHeading.innerHTML = `<div>High Scores</div>`;
@@ -764,7 +764,7 @@ function toggleSort() {
 
 // Clears scores from view and local storage.
 function clearScores() {
-  const highScoresList = document.querySelector(".high-scores");
+  const highScoresList = document.querySelector(".highScores");
   highScoresList.innerHTML = "";
   const highScoresHeading = document.querySelector(".highScoreHeading");
   highScoresHeading.innerHTML = "";
