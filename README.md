@@ -8,7 +8,7 @@ This is a classic indie-styled memory game called **Under Control**. It's a proj
 
 ## About This Project
 * Click (Desktop) or tap (mobile) to flip the tiles in the grid, and try to match all the pairs with the least number of guesses and as quickly as you can. The game is completed when all of the pairs are matched.
-* Be sure to enter your name because both your 10 best times and 10 best minimum number of guesses will be saved as you play. e.g. if you get a top time but the number of guesses aren't one of your best, only the best time will be saved ..or vice versa. You can toggle between the two lists of high scores at any given time. Unless you clear your scores, they will also save in your browser's local storage for the next time that you want to play.
+* Be sure to enter your name because both your 5 best times and 5 best minimum number of guesses will be saved as you play. e.g. if you get a top time but the number of guesses aren't one of your best, only the best time will be saved ..or vice versa. You can toggle between the two lists of high scores at any given time. Unless you clear your scores, they will also save in your browser's local storage for the next time that you want to play.
 * Please let me know if you make your way into the global top 10 of one of the two categories. Just send me a screenshot of your score and I'll update the relevant list. You are only permitted one score in each list.
 
 ## Play Online 
@@ -21,28 +21,18 @@ This is a classic indie-styled memory game called **Under Control**. It's a proj
 * Go live in your chosen browser.
 
 ## Top 10 Scores by Time
-1. &nbsp; KMD&nbsp; &nbsp;30 secs 0 millis&nbsp; &nbsp;(15 guesses)
-2. &nbsp; ALB&nbsp; &nbsp;33 secs 0 millis&nbsp; &nbsp;(16 guesses)
-3. &nbsp; TSS&nbsp; &nbsp;55 secs 84 millis&nbsp; &nbsp;(24 guesses)
-4. 
-5. 
-6. 
-7. 
-8. 
-9. 
-10. 
+1. &nbsp; CAM&nbsp; &nbsp;15.25 secs&nbsp; &nbsp;(14 guesses)  
+2. &nbsp; CAM&nbsp; &nbsp;17.29 secs&nbsp; &nbsp;(13 guesses)  
+3. &nbsp; REN&nbsp; &nbsp;17.69 secs&nbsp; &nbsp;(11 guesses)  
+4. &nbsp; CAM&nbsp; &nbsp;17.76 secs&nbsp; &nbsp;(12 guesses)  
+5. &nbsp; CAM&nbsp; &nbsp;17.78 secs&nbsp; &nbsp;(13 guesses)  
 
 ## Top 10 Scores by Guesses
-1. &nbsp; KMD&nbsp; &nbsp;15 Guesses&nbsp; &nbsp;(30 secs 0 millis)
-2. &nbsp; ALB&nbsp; &nbsp;16 Guesses&nbsp; &nbsp;(33 secs 0 millis)
-3. &nbsp; TSS&nbsp; &nbsp;24 Guesses&nbsp; &nbsp;(55 secs 84 millis)     
-4. 
-5. 
-6. 
-7. 
-8. 
-9. 
-10. 
+1. &nbsp; DOM&nbsp; &nbsp;10 Guesses&nbsp; &nbsp;(20.06 secs)  
+2. &nbsp; STE&nbsp; &nbsp;10 Guesses&nbsp; &nbsp;(21.46 secs)  
+3. &nbsp; REN&nbsp; &nbsp;11 Guesses&nbsp; &nbsp;(17.69 secs)  
+4. &nbsp; DOM&nbsp; &nbsp;11 Guesses&nbsp; &nbsp;(18.24 secs)  
+5. &nbsp; DOM&nbsp; &nbsp;11 Guesses&nbsp; &nbsp;(23.96 secs)  
 
 ## Testers
 * Andreas Lindberg
