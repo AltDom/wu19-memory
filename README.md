@@ -26,7 +26,7 @@ This is a memory game called **Under Control** which I developed with HTML, CSS 
 3. &nbsp; REN&nbsp; &nbsp;17.69 secs&nbsp; &nbsp;(11 guesses)  
 
 ## Top Scores by Guesses
-1. &nbsp; DOM&nbsp; &nbsp;10 Guesses&nbsp; &nbsp;(20.06 secs)  
+1. &nbsp; DMK&nbsp; &nbsp;10 Guesses&nbsp; &nbsp;(20.06 secs)  
 2. &nbsp; STE&nbsp; &nbsp;10 Guesses&nbsp; &nbsp;(21.46 secs)  
 3. &nbsp; REN&nbsp; &nbsp;11 Guesses&nbsp; &nbsp;(17.69 secs) 
 
