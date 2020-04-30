@@ -1,21 +1,21 @@
 // Content array.
 const gridItems = [
-    { name: 'dreamcast', image: '/icons/dreamcast.svg' },
-    { name: 'n64', image: '/icons/n64.svg' },
-    { name: 'ps4', image: '/icons/ps4.svg' },
-    { name: 'ps4-wireless', image: '/icons/ps4-wireless.svg' },
-    { name: 'ps4-gamepad', image: '/icons/ps4-gamepad.svg' },
-    { name: 'gamepad', image: '/icons/gamepad.svg' },
-    { name: 'snes', image: '/icons/snes.svg' },
-    { name: 'joystick', image: '/icons/joystick.svg' },
-    { name: 'dreamcast', image: '/icons/dreamcast.svg' },
-    { name: 'n64', image: '/icons/n64.svg' },
-    { name: 'ps4', image: '/icons/ps4.svg' },
-    { name: 'ps4-wireless', image: '/icons/ps4-wireless.svg' },
-    { name: 'ps4-gamepad', image: '/icons/ps4-gamepad.svg' },
-    { name: 'gamepad', image: '/icons/gamepad.svg' },
-    { name: 'snes', image: '/icons/snes.svg' },
-    { name: 'joystick', image: '/icons/joystick.svg' }
+    { name: 'dreamcast', image: '/public/icons/dreamcast.svg' },
+    { name: 'n64', image: '/public/icons/n64.svg' },
+    { name: 'ps4', image: '/public/icons/ps4.svg' },
+    { name: 'ps4-wireless', image: '/public/icons/ps4-wireless.svg' },
+    { name: 'ps4-gamepad', image: '/public/icons/ps4-gamepad.svg' },
+    { name: 'gamepad', image: '/public/icons/gamepad.svg' },
+    { name: 'snes', image: '/public/icons/snes.svg' },
+    { name: 'joystick', image: '/public/icons/joystick.svg' },
+    { name: 'dreamcast', image: '/public/icons/dreamcast.svg' },
+    { name: 'n64', image: '/public/icons/n64.svg' },
+    { name: 'ps4', image: '/public/icons/ps4.svg' },
+    { name: 'ps4-wireless', image: '/public/icons/ps4-wireless.svg' },
+    { name: 'ps4-gamepad', image: '/public/icons/ps4-gamepad.svg' },
+    { name: 'gamepad', image: '/public/icons/gamepad.svg' },
+    { name: 'snes', image: '/public/icons/snes.svg' },
+    { name: 'joystick', image: '/public/icons/joystick.svg' }
 ];
 const alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Ö','Ä','Å','Ü'];
 
