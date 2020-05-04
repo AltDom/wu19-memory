@@ -7,9 +7,9 @@
 This is a memory game called **Under Control**. It's a project I developed with HTML, CSS & JavaScript. 
 
 ## About This Project
-* Tap (mobile) or click (desktop) to flip the tiles in the grid, and try to match all the pairs with the least number of guesses and as quickly as you can. The game is completed when all of the pairs are matched.
-* Be sure to enter your name because both your 10 best times and 10 best minimum number of guesses will be saved as you play. You can toggle between the two lists of high scores at any given time. Unless you clear your scores, they will also save in your browser's local storage for the next time that you want to play.
-* Let me know if you make your way into the global top 5 of one of the two categories below.
+* Tap (mobile) or click (desktop) to flip the tiles in the grid, and try to match all the pairs with the least number of guesses and as quickly as you can. The game is won when all of the pairs are matched.
+* Be sure to enter your name because both your 10 best times and minimum number of guesses will be saved as you play. You can toggle between the two lists of high scores at any given time. Unless you clear your scores, they will also save in your browser's local storage for the next time that you want to play.
+* Let me know if you make your way into the global top 3 of one of the two categories below.
 
 ## Play Online 
 * You can play online at [Netlify](http://under-control.netlify.com).
@@ -26,7 +26,7 @@ This is a memory game called **Under Control**. It's a project I developed with 
 3. &nbsp; REN&nbsp; &nbsp;17.69 secs&nbsp; &nbsp;(11 guesses) 
 
 ## Top Scores by Guesses
-1. &nbsp; DMK&nbsp; &nbsp;10 Guesses&nbsp; &nbsp;(20.06 secs)  
+1. &nbsp; DOM&nbsp; &nbsp;10 Guesses&nbsp; &nbsp;(20.06 secs)  
 2. &nbsp; STE&nbsp; &nbsp;10 Guesses&nbsp; &nbsp;(21.46 secs)  
 3. &nbsp; REN&nbsp; &nbsp;11 Guesses&nbsp; &nbsp;(17.69 secs) 
 
